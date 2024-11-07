@@ -1,0 +1,5 @@
+[
+    { "username": "Sally123", "password": "sallysPassword", "address" : "123 Maple Street", "pharmacy": "Springfield Community Pharmacy"},
+    { "username": "Bill548", "password": "password2", "address" : "789 Pine Road", "pharmacy": "Rocky Mountain Pharmacy"},
+    { "username": "TomTom", "password": "admin123", "address": "456 Oak Avenue", "pharmacy": "Lone Star Pharmacy" }
+]

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <ul>
+      <li><a href="logIn.html">Log out</a></li>
+    </ul>
+    <title>User Profile</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+          const params = new URLSearchParams(window.location.search);
+          const loggedInUsername = params.get('username');
+
+          if (loggedInUsername) {
+              try {
+                  const response = await fetch('logins.json');
+                  const userLogins = await response.json();
+                  const user = userLogins.find(user => user.username === loggedInUsername);
+
+                  if (user) {
+                      document.getElementById('username').textContent = user.username;
+                      document.getElementById('address').textContent = user.address || 'N/A';
+                      document.getElementById('pharmacy').textContent = user.pharmacy || 'N/A';
+                  } else {
+                      alert('User not found');
+                      window.location.href = '/logIn.html'; 
+                  }
+              } catch (error) {
+                  console.error('Error fetching user data:', error);
+                  alert('An error occurred while loading the profile.');
+              }
+          } else {
+              alert('No user logged in');
+              window.location.href = '/logIn.html'; 
+          }
+      });
+  </script>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Address:</strong> <span id="address"></span></p>
+    <p><strong>Pharmacy:</strong> <span id="pharmacy"></span></p>
+
+    <button onclick="window.location.href = '/logIn.html';">Go Back to Login</button>
+</body>
+</html>
